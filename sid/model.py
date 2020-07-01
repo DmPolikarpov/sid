@@ -18,9 +18,9 @@ class Industry(db.Model):
     """the model to describe some industry"""
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
+    country_id = db.Column(db.Integer, db.ForeignKey('country.id'), nullable=True)
     description = db.Column(db.Text, nullable=True)
     related_companies = db.relationship('Company', backref='industry_companies',lazy=True)
-    countries = db.relationship('Country', backref='industry_countries', lazy=True)
 
     def __repr__(self):
         return f'Industry {self.name}'
@@ -35,7 +35,7 @@ class Company(db.Model):
     decription = db.Column(db.Text, nullable=True)
     logo = db.Column(db.String, nullable=True)
     website = db.Column(db.String, nullable=True)
-    shares = db.relationship('Share', backref='share.id', lazy=True)
+    shares = db.relationship('Share', backref='shares', lazy=True)
     balance_sheet = db.relationship('Balance_sheet', backref='company_balance_sheet', lazy=True)
     cash_flow = db.relationship('Cash_flow', backref='company_cash_flow', lazy=True)
 
