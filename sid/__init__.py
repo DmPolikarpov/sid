@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+from flask_migrate import Migrate
 from sid.db import db
 
 from sid.company.views import blueprint as company_blueprint
@@ -12,6 +13,7 @@ def create_app():
     app = Flask(__name__)
     app.config.from_pyfile('config.py')
     db.init_app(app)
+    migrate = Migrate(app, db)
 
     app.register_blueprint(company_blueprint)
     app.register_blueprint(country_blueprint)
