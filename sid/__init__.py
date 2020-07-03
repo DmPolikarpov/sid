@@ -2,12 +2,15 @@ from flask import Flask, render_template
 from flask_migrate import Migrate
 from sid.db import db
 
+
 from sid.company.views import blueprint as company_blueprint
 from sid.country.views import blueprint as country_blueprint
 from sid.industry.views import blueprint as industry_blueprint
 from sid.share.views import blueprint as share_blueprint
 from sid.cashFlow.views import blueprint as cashflow_blueprint
 from sid.balanceSheet.views import blueprint as balancesheet_blueprint
+
+
 
 def create_app():
     app = Flask(__name__)

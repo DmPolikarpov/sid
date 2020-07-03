@@ -1,4 +1,4 @@
-from sid.db import db
+from sid import db
 from sqlalchemy.orm import relationship
 
 class Share(db.Model):
@@ -6,11 +6,11 @@ class Share(db.Model):
     id = db.Column(db.BigInteger, primary_key=True)
     company_id = db.Column(db.Integer, db.ForeignKey('company.id'), nullable=False)
     trading_date = db.Column(db.Date, nullable=False)
-    open_price = db.Column(db.Numeric, nullable=False)
-    high_price = db.Column(db.Numeric, nullable=False)
-    low_price = db.Column(db.Numeric, nullable=False)
-    close_price = db.Column(db.Numeric, nullable=False)
-    volume = db.Column(db.Numeric, nullable=False)
+    open_price = db.Column(db.Numeric, nullable=True)
+    high_price = db.Column(db.Numeric, nullable=True)
+    low_price = db.Column(db.Numeric, nullable=True)
+    close_price = db.Column(db.Numeric, nullable=True)
+    volume = db.Column(db.Numeric, nullable=True)
     dividends = db.Column(db.Numeric, nullable=True)
     stock_split = db.Column(db.Numeric, nullable=True)
 
