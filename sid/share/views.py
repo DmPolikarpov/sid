@@ -1,4 +1,5 @@
 from flask import Blueprint
+from sid.share.models import Share
 
 
 

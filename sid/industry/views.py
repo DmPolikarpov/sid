@@ -1,4 +1,5 @@
 from flask import Blueprint
+from sid.industry.models import Industry
 
 
 
