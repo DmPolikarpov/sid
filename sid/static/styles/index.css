@@ -1,0 +1,63 @@
+/*the shape of the website*/
+html {/* overflow: -moz-scrollbars-vertical !important; */}
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#basic {
+    min-height: 100%;
+}
+
+
+/*the main content*/
+#main-content {
+    width: 100%;
+    min-height: 100%;
+    flex: 1 0 auto;
+}
+
+.index {
+
+}
+
+.index h1 {
+    text-align: center;
+    font-family: 'Century', Times, serif;
+    font-style: oblique;
+    font-size: 300%;
+}
+
+.index h2 {
+    text-align: center;
+    font-family: 'Century', Times, serif;
+    font-style: oblique;
+    font-size: 200%;    
+}
+
+.index a {
+    font-family: 'Century', Times, serif;
+    font-size: 200%;
+}
+
+.index table {
+    width: 100%;
+    height: 700px;
+}
+
+.index tr {
+    border: 1px solid grey;
+}
+
+.index img { 
+    height:100px;
+    background:rgb(255, 248, 220);
+}
+
+.description {
+    width: 50%;
+    font-family: 'Century', Times, serif;
+    font-style: oblique;
+    font-size: 150%;
+}

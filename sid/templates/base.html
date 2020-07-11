@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{{ page_title }}</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/index.css', v=1) }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/top_menu.css', v=1) }}">
+    </head>
+    <body>
+        <!--the main block of the website-->
+        <div id="basic">
+            <!--the top menu-->
+            <div id="top-menu">
+                {% include 'top_menu.html' %}
+            </div>
+            <!--the main content-->
+            <div id="main-content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </body>
+</html>
