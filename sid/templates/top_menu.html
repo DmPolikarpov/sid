@@ -1,12 +1,12 @@
 <div class="menu-content">
     <!--the logo of the website-->
-    <a href=" ">
+    <a href="/">
         <img src="{{ url_for('static', filename='images/logo.png') }}">
     </a>
     <!--others items of the top menu-->
     <ul>
         <li>
-            <a href=" ">Компании</a>
+            <a href="{{ url_for('company.index') }}">Компании</a>
         </li>
         <li>
             <a href=" ">Отрасли</a>
@@ -17,12 +17,10 @@
         <li>
             <a href=" ">Обучение</a>
         </li>
-        <li>
-            <!--the form to search-->
-            <form action=" " method="POST">
-                <input type="search" name="q" placeholder="поиск по сайту">
-                <button>Искать</button>
-            </form>
-        </li>
+        <!--the form to search-->
+        <form action=" " method="POST">
+            <input type="search" name="q" placeholder="поиск по сайту">
+            <button>Искать</button>
+        </form>
     </ul>
 </div>

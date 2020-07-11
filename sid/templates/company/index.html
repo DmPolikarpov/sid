@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!--the list of the companies-->
+    <div class="company-list">
+        <table>
+            {% for company in company_list %}
+            <tr>
+                <td>
+                    <img src="../static/{{ company.logo }}">
+                </td>
+                <td>
+                    <h2>
+                        <a href="{{ url_for('company.company_detail', company_id=company.id) }}">{{ company.name }}</a>
+                    </h2>
+                </td>
+                <td class="company_description">
+                    {% if company.description %}
+                        <p>{{ company.description[:150] }}...</p>
+                    {% else %}
+                        <p>нет данных</p>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

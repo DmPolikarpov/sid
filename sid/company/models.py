@@ -11,7 +11,7 @@ class Company(db.Model):
     industry_id = db.Column(db.Integer, db.ForeignKey('industry.id'), nullable=True)
     ticker = db.Column(db.String, nullable=False)
     country_id = db.Column(db.Integer, db.ForeignKey('country.id'), nullable=True)
-    decription = db.Column(db.Text, nullable=True)
+    description = db.Column(db.Text, nullable=True)
     logo = db.Column(db.String, nullable=True)
     website = db.Column(db.String, nullable=True)
     shares = db.relationship('Share', backref='shares', lazy=True)
