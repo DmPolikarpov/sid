@@ -1,6 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div>
-        <h2>{{ company.name }}</h2>
+    <!--the detail information for each company-->
+    <div class="company-detail">
+        <h1>{{ company.name }}</h1>
+        <!--Tabs for the page-->
+        <ul id="tabs">
+            <li><a href="#" title="tab1">Профиль</a></li>
+            <li><a href="#" title="tab2">Акции</a></li>
+            <li><a href="#" title="tab3">финансовая отчетность</a></li>
+        </ul>
+        <!--The content for each tab-->
+        <div id="content">
+            <div id="tab1">Вкладка Профиль в разработке</div>
+            <div id="tab2">Вкладка Акции в разработке</div>
+            <div id="tab3">Вкладка Финансовая отчетность в разработке</div>
+        </div>
     </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/company_detail.js', v=1) }}"></script>
 {% endblock %}
