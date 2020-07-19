@@ -50,3 +50,15 @@
     font-style: oblique;
     font-size: 200%;
 }
+
+.paginator ul {
+    list-style: none;
+    float: left;
+}
+
+.paginator ul li {
+    float: left;
+    padding:50px 40px 0 40px;
+    font-family: 'Century', Times, serif;
+    font-size: 150%;
+}

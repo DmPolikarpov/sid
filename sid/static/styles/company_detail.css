@@ -22,24 +22,24 @@
  
 #tabs a {
     position: relative;
-    background: #ddd;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
-    background-image: -webkit-linear-gradient(top, #fff, #ddd);
-    background-image: -moz-linear-gradient(top, #fff, #ddd);
-    background-image: -ms-linear-gradient(top, #fff, #ddd);
-    background-image: -o-linear-gradient(top, #fff, #ddd);
-    background-image: linear-gradient(to bottom, #fff, #ddd);
+    background: rgb(255, 248, 220);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 255, 255)), to(rgb(255, 248, 220)));
+    background-image: -webkit-linear-gradient(top, rgb(255, 255, 255), rgb(255, 248, 220));
+    background-image: -moz-linear-gradient(top, rgb(255, 255, 255), rgb(255, 248, 220));
+    background-image: -ms-linear-gradient(top, rgb(255, 255, 255), rgb(255, 248, 220));
+    background-image: -o-linear-gradient(top, rgb(255, 255, 255), rgb(255, 248, 220));
+    background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgb(255, 248, 220));
     padding: .7em 1.5em;
     float: left;
     text-decoration: none;
-    color: rgb(0,0,0);
-    text-shadow: 0 1px 0 rgba(255,255,255,.8);
+    color: rgb(0, 0, 0);
+    text-shadow: 0 1px 0 rgb(255, 255, 255);
     -webkit-border-radius: 5px 0 0 0;
     -moz-border-radius: 5px 0 0 0;
     border-radius: 5px 0 0 0;
-    -moz-box-shadow: 0 2px 2px rgba(0,0,0,.4);
-    -webkit-box-shadow: 0 2px 2px rgba(0,0,0,.4);
-    box-shadow: 0 2px 2px rgba(0,0,0,.4);
+    -moz-box-shadow: 0 2px 2px rgb(0, 0, 0);
+    -webkit-box-shadow: 0 2px 2px rgb(0, 0, 0);
+    box-shadow: 0 2px 2px rgb(0, 0, 0);
     font-size: 18px;
     font-weight: 700;
 }
@@ -48,7 +48,7 @@
 #tabs a:hover::after,
 #tabs a:focus,
 #tabs a:focus::after {
-    background: #fff;
+    background: rgb(255, 255, 255);
 }
  
 #tabs a:focus {
@@ -63,16 +63,16 @@
     right: -.5em;  
     bottom: 0;
     width: 1em;
-    background: #ddd;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
-    background-image: -webkit-linear-gradient(top, #fff, #ddd);
-    background-image: -moz-linear-gradient(top, #fff, #ddd);
-    background-image: -ms-linear-gradient(top, #fff, #ddd);
-    background-image: -o-linear-gradient(top, #fff, #ddd);
-    background-image: linear-gradient(to bottom, #fff, #ddd);  
-    -moz-box-shadow: 2px 2px 2px rgba(0,0,0,.4);
-    -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,.4);
-    box-shadow: 2px 2px 2px rgba(0,0,0,.4);
+    background: rgb(255, 248, 220);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 255, 255)), to(rgb(255, 248, 220)));
+    background-image: -webkit-linear-gradient(top, rgb(255, 255, 255), rgb(255, 248, 220));
+    background-image: -moz-linear-gradient(top, rgb(255, 255, 255), rgb(255, 248, 220));
+    background-image: -ms-linear-gradient(top, rgb(255, 255, 255), rgb(255, 248, 220));
+    background-image: -o-linear-gradient(top, rgb(255, 255, 255), rgb(255, 248, 220));
+    background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgb(255, 248, 220));  
+    -moz-box-shadow: 2px 2px 2px rgb(0, 0, 0);
+    -webkit-box-shadow: 2px 2px 2px rgb(0, 0, 0);
+    box-shadow: 2px 2px 2px rgb(0, 0, 0);
     -webkit-transform: skew(10deg);
     -moz-transform: skew(10deg);
     -ms-transform: skew(10deg);
@@ -85,21 +85,44 @@
  
 #tabs #current a,
 #tabs #current a::after {
-    background: #fff;
+    background: rgb(255, 255, 255);
     z-index: 3;
 }
 
 /*styles for content*/
 #content {
-    background: #fff;
+    background: rgb(255, 255, 255);
     padding: 2em;
     position: relative;
     z-index: 2;	
     -moz-border-radius: 0 5px 5px 5px;
     -webkit-border-radius: 0 5px 5px 5px;
     border-radius: 0 5px 5px 5px;
-    -moz-box-shadow: 0 -2px 3px -2px rgba(0, 0, 0, .5);
-    -webkit-box-shadow: 0 -2px 3px -2px rgba(0, 0, 0, .5);
-    box-shadow: 0 -2px 3px -2px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 0 -2px 3px -2px rgb(0, 0, 0);
+    -webkit-box-shadow: 0 -2px 3px -2px rgb(0, 0, 0);
+    box-shadow: 0 -2px 3px -2px rgb(0, 0, 0);
     font-family: 'Century', Times, serif;
+}
+
+.profile {
+    float: left;
+    width: 75%;
+    font-family: 'Century', Times, serif;
+}
+
+.profile h2 {
+    text-align: center;
+    font-family: 'Century', Times, serif;
+    font-style: oblique;
+}
+
+.profile p {
+    text-align: left;
+    font-family: 'Century', Times, serif;
+    font-size: 120%;
+}
+
+.logo {
+    float: right;
+    width: 15%;
 }

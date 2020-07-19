@@ -3,7 +3,7 @@
     <!--the list of the companies-->
     <div class="company-list">
         <table>
-            {% for company in company_list %}
+            {% for company in company_list.items %}
             <tr>
                 <td>
                     <img src="../static/{{ company.logo }}">
@@ -23,5 +23,27 @@
             </tr>
             {% endfor %}
         </table>
+        <div class='paginator'>
+            <ul>
+                <li>
+                    {% if company_list.has_prev %}
+                        <a href="{{ url_for('company.index', page=company_list.prev_num) }}">
+                            <p>&lt;&lt; Предыдущая</p>
+                        </a>
+                    {% else %}
+                        <p>&lt;&lt; Предыдущая</p>
+                    {% endif %} 
+                </li>
+                <li>
+                    {% if company_list.has_next %}
+                        <a href="{{ url_for('company.index', page=company_list.next_num) }}">
+                            <p>Следующая &gt;&gt;</p>
+                        </a>
+                    {% else %}
+                        <p>Следующая &gt;&gt;</p>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
     </div>
 {% endblock %}

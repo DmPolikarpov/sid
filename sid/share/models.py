@@ -15,4 +15,4 @@ class Share(db.Model):
     stock_split = db.Column(db.Numeric, nullable=True)
 
     def __repr__(self):
-        return f'Share {self.name}'
+        return f'Share {self.company_id}'

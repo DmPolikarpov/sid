@@ -7,12 +7,51 @@
         <ul id="tabs">
             <li><a href="#" title="tab1">Профиль</a></li>
             <li><a href="#" title="tab2">Акции</a></li>
-            <li><a href="#" title="tab3">финансовая отчетность</a></li>
+            <li><a href="#" title="tab3">Финансовая отчетность</a></li>
         </ul>
         <!--The content for each tab-->
         <div id="content">
-            <div id="tab1">Вкладка Профиль в разработке</div>
-            <div id="tab2">Вкладка Акции в разработке</div>
+            <div id="tab1">
+                <div class="profile">
+                    <h2>{{ company.name }} ({{ company.ticker }})</h2>
+                    <h3>Описание</h3>
+                    <p>{{ company.description }}</p>
+                    <h3>Тикер</h3>
+                    <p>{{ company.ticker }}</p>
+                    <h3>Вэбсайт</h3>
+                    <p>{{ company.website }}</p>
+                </div>
+                <div class="logo">
+                    <img src="../../static/{{ company.logo }}">
+                </div>
+            </div>
+            <div id="tab2">
+                <canvas id="myChart" width="400" height="400"></canvas>
+                <!--вынести в отдельный файл-->
+                <script>
+                    var ctx = document.getElementById('myChart').getContext('2d');
+                    var shares_info = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels:[{% for share in shares %}'{{ share.trading_date }}', {% endfor %}],
+                            datasets: [{
+                                label:'',
+                                data:[{% for share in shares %}{{ share.close_price }}, {% endfor %}],
+                                borderColor: "#3e95cd",
+                            }]
+                        },
+                        options: {
+                            scales:{
+                                yAxes:[{
+                                    ticks:{
+                                        beginAtZero: true
+                                    },
+                                }],
+                            },
+                        },
+                    });
+                </script>
+            </div>
             <div id="tab3">Вкладка Финансовая отчетность в разработке</div>
         </div>
     </div>
