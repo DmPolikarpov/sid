@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from datetime import datetime
 from sid.company.models import Company
 from sid.share.models import Share
 
@@ -17,7 +18,13 @@ def index(page=1):
 @blueprint.route('/detail/<int:company_id>', methods=['GET'])
 def company_detail(company_id):
     company = Company.query.get_or_404(company_id)
-    shares = Share.query.filter_by(company_id=company_id).all()
-    if not shares:
+    date_now = datetime.now()
+    one_year = datetime(date_now.year-1, date_now.month, date_now.day).date()
+    five_year = datetime(date_now.year-5, date_now.month, date_now.day).date()
+    one_year_shares = Share.query.filter_by(company_id=company_id).filter(Share.trading_date > one_year).all()
+    five_year_shares = Share.query.filter_by(company_id=company_id).filter(Share.trading_date > five_year).all()
+    if not one_year_shares:
         abort(404)
-    return render_template('company/detail.html', company=company, shares=shares)
+    if not five_year_shares:
+        abort(404)
+    return render_template('company/detail.html', company=company, one_year_shares=one_year_shares, five_year_shares=five_year_shares)

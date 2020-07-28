@@ -27,29 +27,57 @@
             </div>
             <div id="tab2">
                 <canvas id="myChart" width="400" height="400"></canvas>
-                <!--вынести в отдельный файл-->
+                <button id="0" type="button">1 год</button>
+                <button id="1" type="button">5 лет</button>
                 <script>
-                    var ctx = document.getElementById('myChart').getContext('2d');
-                    var shares_info = new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels:[{% for share in shares %}'{{ share.trading_date }}', {% endfor %}],
+                    const options = {
+                        scales:{
+                            yAxes:[{
+                                ticks:{
+                                    beginAtZero: true
+                                },
+                            }],
+                        },
+                    }
+
+                    const oneYear = {
+                            labels: [{% for share in one_year_shares %}
+                                        '{{ share.trading_date }}',
+                                    {% endfor %}],
                             datasets: [{
-                                label:'',
-                                data:[{% for share in shares %}{{ share.close_price }}, {% endfor %}],
-                                borderColor: "#3e95cd",
+                                label:'1 год',
+                                data: [{% for share in one_year_shares %}
+                                        '{{ share.close_price }}',
+                                    {% endfor %}],
+                                borderColor: "#3e95cd"
                             }]
-                        },
-                        options: {
-                            scales:{
-                                yAxes:[{
-                                    ticks:{
-                                        beginAtZero: true
-                                    },
-                                }],
-                            },
-                        },
+                        }
+
+                    const fiveYear = {
+                            labels: [{% for share in five_year_shares %}
+                                        '{{ share.trading_date }}',
+                                    {% endfor %}],
+                            datasets: [{
+                                label:'5 лет',
+                                data: [{% for share in five_year_shares %}
+                                        '{{ share.close_price }}',
+                                    {% endfor %}],
+                                borderColor: "#3e95cd"
+                            }]
+                        }
+
+                    var ctx = document.getElementById('myChart').getContext('2d');
+                    var chart = new Chart(ctx, {type: 'line', data: oneYear, options: options})
+
+                    document.getElementById("0").addEventListener('click', () => {
+                        chart.config.data = oneYear
+                        chart.update();
                     });
+                    document.getElementById("1").addEventListener('click', () => {
+                        chart.config.data = fiveYear
+                        chart.update();
+                    });
+
                 </script>
             </div>
             <div id="tab3">Вкладка Финансовая отчетность в разработке</div>
