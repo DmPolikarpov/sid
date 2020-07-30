@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from datetime import datetime
+from datetime import datetime, timedelta
 from sid.company.models import Company
 from sid.share.models import Share
 
@@ -19,12 +19,12 @@ def index(page=1):
 def company_detail(company_id):
     company = Company.query.get_or_404(company_id)
     date_now = datetime.now()
+    one_month = (date_now - timedelta(days=30)).date()
+    six_months = (date_now - timedelta(days=182)).date()
     one_year = datetime(date_now.year-1, date_now.month, date_now.day).date()
-    five_year = datetime(date_now.year-5, date_now.month, date_now.day).date()
-    one_year_shares = Share.query.filter_by(company_id=company_id).filter(Share.trading_date > one_year).all()
-    five_year_shares = Share.query.filter_by(company_id=company_id).filter(Share.trading_date > five_year).all()
-    if not one_year_shares:
+    five_years = datetime(date_now.year-5, date_now.month, date_now.day).date()
+    ten_years = datetime(date_now.year-10, date_now.month, date_now.day).date()
+    shares = Share.query.filter_by(company_id=company_id).all()
+    if not shares:
         abort(404)
-    if not five_year_shares:
-        abort(404)
-    return render_template('company/detail.html', company=company, one_year_shares=one_year_shares, five_year_shares=five_year_shares)
+    return render_template('company/detail.html', company=company, one_month=one_month, six_months=six_months, one_year=one_year, five_years=five_years, ten_years=ten_years, shares=shares)
