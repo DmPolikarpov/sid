@@ -5,8 +5,6 @@ $(document).ready(function() {
     $("#content div:first").fadeIn();
     $(".profile").fadeIn();
     $(".logo").fadeIn();
-    $(".canvas").fadeIn();
-    $(".script").fadeIn();
 /*processing a tab click action*/
     $('#tabs a').click(function(e) {
         e.preventDefault();
@@ -18,8 +16,11 @@ $(document).ready(function() {
         $(".logo").fadeIn();
         $(".canvas").fadeIn();
         $(".script").fadeIn();
+        $("#tab2 div").fadeIn();
     });
 });
+
+
 
 
 

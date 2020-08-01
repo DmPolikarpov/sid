@@ -14,6 +14,8 @@ class Company(db.Model):
     description = db.Column(db.Text, nullable=True)
     logo = db.Column(db.String, nullable=True)
     website = db.Column(db.String, nullable=True)
+    exchange = db.Column(db.String, nullable=True)
+    exchange_short_name = db.Column(db.String, nullable=True)
     shares = db.relationship('Share', backref='shares', lazy=True)
     balance_sheet = db.relationship('Balance_sheet', backref='company_balance_sheet', lazy=True)
     cash_flow = db.relationship('Cash_flow', backref='company_cash_flow', lazy=True)
