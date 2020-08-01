@@ -1,5 +1,4 @@
 from sid import db
-from sqlalchemy.orm import relationship
 
 class Share(db.Model):
     """the model to save data of the shares of different companies"""
