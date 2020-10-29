@@ -32,17 +32,53 @@
     border: 1px solid grey;
 }
 
-.company_list img { 
+.company_logo img { 
     max-height: 100px;
     max-width: 200px;
     background:rgb(255, 248, 220);
 }
 
+.company_logo {
+    transition: all .5s ease-in-out;
+    transform: scaleX(-1);
+    opacity: 0;
+}
+
+.company_logo.visible {
+    transform: scaleX(1);
+    opacity: 1;
+}
+
 .company_description {
     width: 50%;
+}
+
+a.content {
+    font-family: 'Century', Times, serif;
+    font-style: oblique;
+    font-size: 100%;
+    transition: all .2s ease-in-out;
+    transform: translateX(30px);
+    opacity: 0;
+}
+
+p.content {
     font-family: 'Century', Times, serif;
     font-style: oblique;
     font-size: 200%;
+    transition: all .2s ease-in-out;
+    transform: translate3d(0px, 70px, 0);
+    opacity: 0;
+}
+
+a.content.visible {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+p.content.visible {
+    transform: translate3d(0px, 0, 0);
+    opacity: 1;
 }
 
 .company_list p { 

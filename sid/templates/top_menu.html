@@ -1,26 +1,24 @@
-<div class="menu-content">
-    <!--the logo of the website-->
-    <a href="/">
-        <img src="{{ url_for('static', filename='images/logo.png') }}">
-    </a>
-    <!--others items of the top menu-->
+<!--the logo of the website-->
+<a class="logotype" href="/">
+    <img src="{{ url_for('static', filename='images/logotype.png') }}">
+</a>
+<!--
+<nav class="menu-content">
+
     <ul>
         <li>
-            <a href="{{ url_for('company.index') }}">Компании</a>
+            <a href="{{ url_for('company.index') }}">Эмитенты</a>
         </li>
         <li>
-            <a href=" ">Отрасли</a>
+            <a href=" ">Портфолио</a>
         </li>
         <li>
-            <a href=" ">Страны</a>
+            <a href=" ">О проекте</a>
         </li>
-        <li>
-            <a href=" ">Обучение</a>
-        </li>
-        <!--the form to search-->
-        <form action=" " method="POST">
-            <input type="search" name="q" placeholder="поиск по сайту">
-            <button>Искать</button>
-        </form>
     </ul>
+</nav>
+-->
+<div class="slogan">
+    <h1>Smart Invest Decision</h1>
+    <h2>Информационный портал для начинающих инвесторов</h2>
 </div>

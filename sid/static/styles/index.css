@@ -1,22 +1,56 @@
 /*the shape of the website*/
-html {/* overflow: -moz-scrollbars-vertical !important; */}
-html, body {
-    margin: 0;
+
+*,*:before,*:after {
     padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    background-image: linear-gradient(135deg, rgb(168,186,191), rgb(255,255,255));
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0px 10px;
     height: 100%;
 }
 
-#basic {
-    min-height: 100%;
+
+header {
+    position: absolute;
+    width: 100%;
+    height: 60vh;
+    top: 0;
+    left: 0;
+
 }
+
+
+
+
+
+
+
+
 
 
 /*the main content*/
 #main-content {
+    position: absolute;
     width: 100%;
     min-height: 100%;
     flex: 1 0 auto;
+    left:0;
+    top: 120vh;
 }
+
 
 .index {
 
