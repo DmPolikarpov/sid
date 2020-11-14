@@ -3,9 +3,10 @@
     <head>
         <meta charset="utf-8">
         <title>{{ page_title }}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/base.css', v=1) }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/index.css', v=1) }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/top_menu.css', v=1) }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/company_index.css', v=1) }}">
@@ -17,15 +18,42 @@
         <header>
             <div class="container">
                 <div class="header-body>">
-                    {% include 'top_menu.html' %}
+                    <a class="user-profile">
+                        <img src="{{ url_for('static', filename='images/profile.png') }}">
+                    </a>
+                    <div class="user-profile-dialog-window">
+                        <div class="profile-image">
+                            <img src="">
+                        </div>
+                        <div class="greeting-user-name">
+                            <h4>Добро пожаловать,</h4>
+                        </div>
+                    </div>
+                    <a class="logotype" href="/">
+                        <img src="{{ url_for('static', filename='images/logotype.png') }}">
+                    </a>
                 </div>
             </div>
         </header>
             <!--the main content-->
+        <div class="main-content">
             <div class="container">
-                <div id="main-content">
-                    {% block content %}{% endblock %}
-                </div>
+                {% block content %}{% endblock %}
             </div>
+        </div>
+        <script>
+            // process events of the profile icon click
+            let flag = false;
+            document.querySelector('.user-profile').addEventListener('click', openProfileDialogWindow);
+            function openProfileDialogWindow() {
+                if (flag) {
+                    document.querySelector('.user-profile-dialog-window').setAttribute('style', 'display: none');
+                    flag = false;
+                } else {
+                    document.querySelector('.user-profile-dialog-window').setAttribute('style', 'display: flex');
+                    flag = true;
+                }
+            }
+        </script>
     </body>
 </html>

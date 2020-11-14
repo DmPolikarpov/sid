@@ -1,7 +1,11 @@
 /*company index*/
 
-.company_list {
 
+
+.company_list {
+    position: relative;
+    width: 100%;
+    height: 100vh;
 }
 
 .company_list h1 {
