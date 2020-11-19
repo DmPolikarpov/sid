@@ -1,0 +1,132 @@
+.login-greeting {
+    width: 100%;
+    border-top: 2px solid #ccc;
+    margin-bottom: 10vh;
+}
+
+.login-greeting h1 {
+    position: relative;
+    text-align: center;
+    font-family: 'Century', Times, serif;
+    font-style: oblique;
+    font-size: 60px;
+    margin-top: 60px;
+}
+
+.login-greeting h2 {
+    position: relative;
+    text-align: center;
+    margin-top: 10px;
+    font-family: 'Century', Times, serif;
+    font-style: oblique;
+    text-indent: 30px;
+}
+
+.login-form {
+    position: relative;
+    width: 50%;
+    border: 2px solid #ccc;
+    margin: 0 auto;
+}
+
+.login-form h2 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 10%;
+    font-family: 'Century', Times, serif;
+    font-style: oblique;
+    text-indent: 30px;
+}
+
+.login-form-email-field {
+    display: flex;
+    margin-top: 15px;
+    width: 100%;
+    justify-content: center;
+}
+
+.login-form-email-field .login-form-control {
+    width: 90%;
+    height: 40px;
+    border: 2px solid #ccc;
+}
+
+.login-form-password-field {
+    display: flex;
+    margin-top: 15px;
+    width: 100%;
+    justify-content: center;
+}
+
+.login-form-password-field .login-form-control {
+    width: 90%;
+    height: 40px;
+    border: 2px solid #ccc;
+}
+
+.login-form-submit {
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 40px;
+    width: 100%;
+    justify-content: center;
+}
+
+.login-form-submit .login-form-control {
+    width: 90%;
+    height: 40px;
+    border: 2px solid #000;
+    background-color: rgba(168,186,191,0.8);
+}
+.login-redirect-registration {
+    position: relative;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+}
+
+.login-redirect-registration p {
+    text-align: center;
+    margin-top: 10px;
+    margin-right: 15px;
+    font-family: 'Century', Times, serif;
+    font-style: oblique;
+}
+
+.login-redirect-registration a {
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 15px;
+    font-family: 'Century', Times, serif;
+    font-style: oblique;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

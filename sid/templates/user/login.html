@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="login-greeting">
+    <h1>Вход на сайт</h1>
+    <h2>Введите свои данные для входа на сайт под свой учетной записью</h2>
+    <h3 style="color: red; text-align: center;">{% include('message.html') %}</h3>
+</div>
+<form class="login-form" action="{{ url_for('user.process_login') }}" method="POST">
+    {{ form.hidden_tag() }}
+    <h2>
+        {{ form.email.label }}
+    </h2>
+    <div class="login-form-email-field">
+        {{ form.email() }}
+    </div>
+    <h2>
+        {{ form.password.label }}
+    </h2>
+    <div class="login-form-password-field">
+        {{ form.password() }}
+    </div>
+    <div class="login-form-submit">
+        {{ form.submit }}
+    </div>
+</form>
+<div class="login-redirect-registration">
+    <p>Забыли зарегистрироваться?</p>
+    <a href="">Регистрация</a>
+</div>
+
+
+{% endblock %}

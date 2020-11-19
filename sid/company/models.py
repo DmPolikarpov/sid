@@ -3,6 +3,7 @@ from sid.share.models import Share
 from sid.CompanyKeyMetrics.models import Company_key_metrics
 from sid.balanceSheet.models import Balance_sheet
 from sid.cashFlow.models import Cash_flow
+from sid.portfolio.models import Portfolio
 from sqlalchemy.orm import relationship
 
 class Company(db.Model):
@@ -21,6 +22,7 @@ class Company(db.Model):
     key_metrics = db.relationship('Company_key_metrics', backref='key_metrics', lazy=True)
     balance_sheet = db.relationship('Balance_sheet', backref='company_balance_sheet', lazy=True)
     cash_flow = db.relationship('Cash_flow', backref='company_cash_flow', lazy=True)
+    portfolios = db.relationship('Portfolio', backref='portfolios', lazy=True)
 
     def __repr__(self):
         return f'Company {self.name}'

@@ -8,6 +8,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/base.css', v=1) }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/index.css', v=1) }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/login.css', v=1) }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/top_menu.css', v=1) }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/company_index.css', v=1) }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/company_detail.css', v=1) }}">
@@ -19,14 +20,20 @@
             <div class="container">
                 <div class="header-body>">
                     <a class="user-profile">
-                        <img src="{{ url_for('static', filename='images/profile.png') }}">
+                        <img src="{{ url_for('static', filename='images/profile.png') }} " alt="responsive image to open profile window">
                     </a>
                     <div class="user-profile-dialog-window">
                         <div class="profile-image">
-                            <img src="">
+                            <img src="" alt="user icon">
                         </div>
-                        <div class="greeting-user-name">
-                            <h4>Добро пожаловать,</h4>
+                        <div class="user-info-dialog-window">
+                            <div class="greeting-user-name">
+                                <h4>Добро пожаловать,</h4>
+                            </div>
+                            <div class="profile-dialog-window-buttons">
+                                <a class="sign-up" href="">Регистрация</a>
+                                <a class="sign-in" href="{{ url_for('user.login') }}">Войти</a>
+                            </div>
                         </div>
                     </div>
                     <a class="logotype" href="/">
