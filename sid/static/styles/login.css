@@ -66,6 +66,11 @@
     border: 2px solid #ccc;
 }
 
+.login-form-check-input {
+    margin-top: 15px;
+    margin-left: 5%;
+}
+
 .login-form-submit {
     display: flex;
     margin-top: 50px;

@@ -20,6 +20,10 @@
     <div class="login-form-password-field">
         {{ form.password() }}
     </div>
+    <div class="login-form-check-input">
+        {{ form.remember_me() }}
+        {{ form.remember_me.label(class_ = 'input-form-check-label')}}
+    </div>
     <div class="login-form-submit">
         {{ form.submit }}
     </div>

@@ -21,7 +21,7 @@ def process_login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user and user.check_password(form.password.data):
-            login_user(user)
+            login_user(user, remember=form.remember_me.data)
             flash("Вы зашли на сайт")
             return redirect(url_for('index'))
     flash("Неправильный адрес электронной почты или пароль")
