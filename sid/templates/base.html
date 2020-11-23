@@ -9,6 +9,7 @@
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/base.css', v=1) }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/index.css', v=1) }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/login.css', v=1) }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/registration.css', v=1) }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/top_menu.css', v=1) }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/company_index.css', v=1) }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/company_detail.css', v=1) }}">
@@ -31,7 +32,7 @@
                                 <h4>Добро пожаловать,</h4>
                             </div>
                             <div class="profile-dialog-window-buttons">
-                                <a class="sign-up" href="">Регистрация</a>
+                                <a class="sign-up" href="{{ url_for('user.registration') }}">Регистрация</a>
                                 <a class="sign-in" href="{{ url_for('user.login') }}">Войти</a>
                             </div>
                         </div>

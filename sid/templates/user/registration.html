@@ -1,3 +1,61 @@
 {% extends 'base.html' %}
 {% block content %}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<div class="registration-greeting">
+    <h1>Регистрация на сайте</h1>
+    <h2>Введите свои данные для создания учетной записи</h2>
+    <h3 style="color: red; text-align: center;">{% include('message.html') %}</h3>
+</div>
+<form class="registration-form" action="{{ url_for('user.process_registration') }}" method="POST">
+    {{ form.hidden_tag() }}
+    <h2>
+        {{ form.first_name.label }}
+    </h2>
+    <div class="registration-form-first-name-field">
+        {{ form.first_name() }}
+    </div>
+    <h2>
+        {{ form.last_name.label }}
+    </h2>
+    <div class="registration-form-last-name-field">
+        {{ form.last_name() }}
+    </div>
+    <h2>
+        {{ form.email.label }}
+    </h2>
+    <div class="registration-form-email-field">
+        {{ form.email() }}
+    </div>
+    <h2>
+        {{ form.password.label }}
+    </h2>
+    <div class="registration-form-password-field">
+        {{ form.password() }}
+    </div>
+    <h2>
+        {{ form.password2.label }}
+    </h2>
+    <div class="registration-form-password-field">
+        {{ form.password2() }}
+    </div>
+    <div class="registration-form-submit">
+        {{ form.submit }}
+    </div>
+</form>
+<div class="registration-redirect-registration">
+    <p>Уже зарегистрированы?</p>
+    <a href="{{ url_for('user.login') }}">Войти</a>
+</div>
+
+
 {% endblock %}

@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from sid.db import db
+from sid.user.models import User
 
 
 from sid.company.views import blueprint as company_blueprint
