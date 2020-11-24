@@ -28,13 +28,23 @@
                             <img src="" alt="user icon">
                         </div>
                         <div class="user-info-dialog-window">
+                            {% if current_user.is_authenticated %}
                             <div class="greeting-user-name">
-                                <h4>Добро пожаловать,</h4>
+                                <h4>Добро пожаловать,<br> {{ current_user.first_name}} {{ current_user.last_name }}</h4>
+                            </div>
+                            <div class="profile-dialog-window-buttons">
+                                <a class="sign-up" href="">личный кабинет</a>
+                                <a class="sign-in" href="{{ url_for('user.logout') }}">Выйти</a>
+                            </div>
+                            {% else %}
+                            <div class="greeting-user-name">
+                                <h4>Добро пожаловать на сайт</h4>
                             </div>
                             <div class="profile-dialog-window-buttons">
                                 <a class="sign-up" href="{{ url_for('user.registration') }}">Регистрация</a>
                                 <a class="sign-in" href="{{ url_for('user.login') }}">Войти</a>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
                     <a class="logotype" href="/">
