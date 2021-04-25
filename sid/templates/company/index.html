@@ -2,27 +2,22 @@
 {% block content %}
     <!--the list of the companies-->
     <div class="company-list">
-        <table>
+        <div class="all-list-items">
             {% for company in company_list.items %}
-            <tr>
-                <td class="company_logo visible">
-                    <img src="../static/{{ company.logo }}">
-                </td>
-                <td class="company_name">
-                    <h2>
-                        <a href="{{ url_for('company.company_detail', company_id=company.id) }}" class="content visible">{{ company.name }}</a>
-                    </h2>
-                </td>
-                <td class="company_description">
-                    {% if company.description %}
-                        <p class="content visible">{{ company.description[:150] }}...</p>
-                    {% else %}
-                        <p class="content visible">нет данных</p>
-                    {% endif %}
-                </td>
-            </tr>
+                <div class="list-item">
+                    <ul>
+                        <li class="company_logo visible">
+                            <img src="../static/{{ company.logo }}">
+                        </li>
+                        <li class="company_name">
+                            <h2>
+                                <a href="{{ url_for('company.company_detail', company_id=company.id) }}" class="content visible">{{ company.name }}</a>
+                            </h2>
+                        </li>
+                    </ul>
+                </div>
             {% endfor %}
-        </table>
+        </div>
         <div class='paginator'>
             <ul>
                 <li>
