@@ -1,4 +1,4 @@
-/*styles for page*/
+/*styles for the page*/
 .company-detail h1 {
     text-align: center;
     font-family: 'Century', Times, serif;
@@ -93,7 +93,7 @@
 #content {
     background: rgb(255, 255, 255);
     padding: 2em;
-    position: relative;
+    margin-bottom: 5vh;
     z-index: 2;	
     -moz-border-radius: 0 5px 5px 5px;
     -webkit-border-radius: 0 5px 5px 5px;
@@ -104,16 +104,28 @@
     font-family: 'Century', Times, serif;
 }
 
+#content #tab1 {
+    height: 100vh;
+}
+
+#content #tab2 {
+    height: 750vh;
+}
+
+#content #tab3 {
+    height: 100vh;
+}
+
 .profile {
+    position: relative;
     float: left;
     width: 75%;
     font-family: 'Century', Times, serif;
 }
 
 .profile h2 {
-    text-align: center;
+    padding: 2vh;
     font-family: 'Century', Times, serif;
-    font-style: oblique;
 }
 
 .profile p {
@@ -127,33 +139,68 @@
     width: 15%;
 }
 
-#tab2 button {
-    background: rgb(200, 200, 200);
-    width: 120px;
-    height: 80px;
-    border: 1px solid grey;
-    font-family: 'Century', Times, serif;
-    font-size: 120%;
-}
-
-#tab2 button:focus,
-#tab2 button:focus::after {
-    background: rgb(255, 255, 255);
-    outline: 0;
-}
-
-#tab2 table {
+.tab2_charts {
+    position: relative;
+    float: left;
+    margin-top: 5vh;
+    padding: 2vh;
     width: 100%;
-    height: 700px;
-    border: 1px solid grey;
-    border-collapse: collapse;
+    font-family: 'Century', Times, serif;
+}
+
+.tab2_charts h2 {
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    font-family: 'Century', Times, serif;
+}
+
+.tab2_charts canvas {
+    width: 100%;
+    border: 2px solid #ccc;
+    border-radius: 10px;
     margin: 0;
 }
 
-#tab2 table td {
-    padding: 5px;
+.tab2-metrics,
+.tab3-balanceSheet-options {
+    float: left;
+    font-family: 'Century', Times, serif;
 }
 
+.tab2-metrics h2 {
+    padding: 2vh;
+    font-family: 'Century', Times, serif;
+}
+
+.tab2-metrics select,
+.tab3-balanceSheet-options select {
+    padding: 2vh;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-family: 'Century', Times, serif;
+    font-size: 120%;
+    margin-bottom: 3vh;
+}
+
+#tab2-period-button,
+#tab3-balanceSheet-button {
+    padding: 2vh;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-family: 'Century', Times, serif;
+    font-size: 120%;
+    margin-bottom: 3vh;
+}
+
+#tab2-period-button:hover,
+#tab3-balanceSheet-button:hover {
+    padding: 2vh;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-family: 'Century', Times, serif;
+    font-size: 120%;
+    margin-bottom: 3vh;
+}
 
 
 

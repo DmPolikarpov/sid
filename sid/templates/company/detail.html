@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
     <!--the detail information for each company-->
-    <div class="company-detail">
+    <div class="caption">
         <h1>{{ company.name }}</h1>
+    </div>
+    <div class="company-detail">
         <!--Tabs for the page-->
         <script type="text/javascript" src="{{ url_for('static', filename='js/company_detail.js', v=1) }}"></script>
         <ul id="tabs">
@@ -13,20 +15,7 @@
         <!--The content for each tab-->
         <div id="content">
             <div id="tab1">
-                <div class="profile">
-                    <h2>{{ company.name }} ({{ company.ticker }})</h2>
-                    <h3>Описание</h3>
-                    <p>{{ company.description }}</p>
-                    <h3>Тикер</h3>
-                    <p>{{ company.ticker }}</p>
-                    <h3>Вэбсайт</h3>
-                    <p>{{ company.website }}</p>
-                    <h3>Биржа</h3>
-                    <p>{{ company.exchange }} ({{ company.exchange_short_name }})</p>
-                </div>
-                <div class="logo">
-                    <img src="../../static/{{ company.logo }}">
-                </div>
+                {% include 'company/tab1.html' %}
             </div>
             <div id="tab2">
                 {% include 'company/tab2.html' %}

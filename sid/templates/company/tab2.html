@@ -1,62 +1,58 @@
-<div>
-    <h2>{{ company.name }} - {{ company.ticker }}</h2>
-    <h3>котировки: информация временно недоступна</h3>
-    <h3>биржа: {{ company.exchange }} ({{ company.exchange_short_name }})</h3>
+<div class="profile">
+    <h2>Котировки</h2>
+    <p>информация временно недоступна</p>
 </div>
-<table>
-    <tr>
-        <td>
-            <button id="0" type="button">1 месяц</button>
-        </td>
-        <td rowspan="6">
-            <canvas id="myChart"></canvas>
-        </td>
-    </tr>
-    <tr><td><button id="1" type="button">6 месяцев</button></td></tr>
-    <tr><td><button id="2" type="button">1 год</button></td></tr>
-    <tr><td><button id="3" type="button">5 лет</button></td></tr>
-    <tr><td><button id="4" type="button">10 лет</button></td></tr>
-    <tr><td><button id="5" type="button">за все время</button></td></tr>
-</table>
-<div>
-    <h1>Финансовые показатели</h1>
-    <table>
-        {% for metrics in keyMetrics %}
-        <tr>
-            <td>Капитализация</td>
-            <td>{{ metrics.market_cap }}</td>
-        </tr>
-        <tr>
-            <td>P/E</td>
-            <td>{{ metrics.pe_ratio }}</td>
-        </tr>
-        <tr>
-            <td>P/S</td>
-            <td>{{ metrics.price_to_sales_ratio }}</td>
-        </tr>
-        <tr>
-            <td>P/BV</td>
-            <td>{{ metrics.ptb_ratio }}</td>
-        </tr>
-        <tr>
-            <td>EV/EBITDA</td>
-            <td>{{ metrics.enterprise_value_over_ebitda }}</td>
-        </tr>
-        <tr>
-            <td>EV/CFO</td>
-            <td>{{ metrics.ev_to_operating_cash_flow }}</td>
-        </tr>
-        <tr>
-            <td>netDebt/EBITDA</td>
-            <td>{{ metrics.net_debt_to_ebitda }}</td>
-        </tr>
-        <tr>
-            <td>ROE</td>
-            <td>{{ metrics.roe }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+<div class="tab2-metrics">
+    <h2>Финансовые показатели</h2>
+    <select id="tab2-period">
+        <option value="0">1 месяц</option>
+        <option value="1">6 месяцев</option>
+        <option value="2">1 год</option>
+        <option value="3">5 лет</option>
+        <option value="4">10 лет</option>
+        <option value="5">за все время</option>
+    </select>
+    <button id="tab2-period-button">Показать</button>
 </div>
+
+
+<div class="tab2_charts">
+    <h2>История цены на акции</h2>
+    <canvas id="share_chart"></canvas>
+</div>
+<div class="tab2_charts">
+    <h2>История изменения показателя "Капитализация"</h2>
+    <canvas id="market_cap_chart"></canvas>
+</div>
+<div class="tab2_charts">
+    <h2>История изменения показателя "PE"</h2>
+    <canvas id="pe_ratio_chart"></canvas>
+</div>
+<div class="tab2_charts">
+    <h2>История изменения показателя "Price to Sales"</h2>
+    <canvas id="price_to_sales_ratio_chart"></canvas>
+</div>
+<div class="tab2_charts">
+    <h2>История изменения показателя "PTB"</h2>
+    <canvas id="ptb_ratio_chart"></canvas>
+</div>
+<div class="tab2_charts">
+    <h2>История изменения показателя "Enterprise value over EBITDA"</h2>
+    <canvas id="enterprise_value_over_ebitda_chart"></canvas>
+</div>
+<div class="tab2_charts">
+    <h2>История изменения показателя "EV to Operating cash flow"</h2>
+    <canvas id="ev_to_operating_cash_flow_chart"></canvas>
+</div>
+<div class="tab2_charts">
+    <h2>История изменения показателя "netDebt to EBITDA"</h2>
+    <canvas id="net_debt_to_ebitda_chart"></canvas>
+</div>
+<div class="tab2_charts">
+    <h2>История изменения показателя "ROE"</h2>
+    <canvas id="roe_chart"></canvas>
+</div>
+
 <script>
     function getShareChartData(period) {
         let labels = []
@@ -160,32 +156,694 @@
         },
     }
 
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var chart = new Chart(ctx, {type: 'bar', data: getShareChartData('one_year'), options: shareOptions});
+    function getMarketCapChartData(period) {
+        let labels = []
+        let volume_data = []
+        if (period == 'one_month') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > one_month %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.market_cap }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '1 месяц'
+        } else if (period == 'six_months') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > six_months %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.market_cap }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '6 месяцев'
+        } else if (period == 'one_year') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > one_year %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.market_cap }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '1 год'
+        } else if (period == 'five_years') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > five_years %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.market_cap }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '5 лет'
+        } else if (period == 'ten_years') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > ten_years %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.market_cap }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '10 лет'
+        } else if (period == 'all_time') {
+            {% for metrics in keyMetrics %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.market_cap }}')
+            {% endfor %}
+            var price_label = 'за все время'
+        } else {
+            alert('error')
+        }
+        const metricsData = {
+                labels: labels.sort(),
+                datasets: [{
+                    label: price_label,
+                    data: volume_data,
+                    borderColor: "#3e95cd",
+                    yAxisID: 'metrics_value',
+                    type: 'line'
+                }]
+            }
 
-    document.getElementById("0").addEventListener('click', () => {
-        chart.config.data = getShareChartData('one_month')
-        chart.update();
-    });
-    document.getElementById("1").addEventListener('click', () => {
-        chart.config.data = getShareChartData('six_months')
-        chart.update();
-    });
-    document.getElementById("2").addEventListener('click', () => {
-        chart.config.data = getShareChartData('one_year')
-        chart.update();
-    });
-    document.getElementById("3").addEventListener('click', () => {
-        chart.config.data = getShareChartData('five_years')
-        chart.update();
-    });
-    document.getElementById("4").addEventListener('click', () => {
-        chart.config.data = getShareChartData('ten_years')
-        chart.update();
-    });
-    document.getElementById("5").addEventListener('click', () => {
-        chart.config.data = getShareChartData('all_time')
-        chart.update();
+        return metricsData;
+    }
+
+    function getPeRatioChartData(period) {
+        let labels = []
+        let volume_data = []
+        if (period == 'one_month') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > one_month %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.pe_ratio }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '1 месяц'
+        } else if (period == 'six_months') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > six_months %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.pe_ratio }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '6 месяцев'
+        } else if (period == 'one_year') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > one_year %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.pe_ratio }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '1 год'
+        } else if (period == 'five_years') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > five_years %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.pe_ratio }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '5 лет'
+        } else if (period == 'ten_years') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > ten_years %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.pe_ratio }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '10 лет'
+        } else if (period == 'all_time') {
+            {% for metrics in keyMetrics %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.pe_ratio }}')
+            {% endfor %}
+            var price_label = 'за все время'
+        } else {
+            alert('error')
+        }
+        const metricsData = {
+                labels: labels.sort(),
+                datasets: [{
+                    label: price_label,
+                    data: volume_data,
+                    borderColor: "#3e95cd",
+                    yAxisID: 'metrics_value',
+                    type: 'line'
+                }]
+            }
+
+        return metricsData;
+    }
+
+    function getPriceToSalesChartData(period) {
+        let labels = []
+        let volume_data = []
+        if (period == 'one_month') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > one_month %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.price_to_sales_ratio }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '1 месяц'
+        } else if (period == 'six_months') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > six_months %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.price_to_sales_ratio }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '6 месяцев'
+        } else if (period == 'one_year') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > one_year %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.price_to_sales_ratio }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '1 год'
+        } else if (period == 'five_years') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > five_years %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.price_to_sales_ratio }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '5 лет'
+        } else if (period == 'ten_years') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > ten_years %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.price_to_sales_ratio }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '10 лет'
+        } else if (period == 'all_time') {
+            {% for metrics in keyMetrics %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.price_to_sales_ratio }}')
+            {% endfor %}
+            var price_label = 'за все время'
+        } else {
+            alert('error')
+        }
+        const metricsData = {
+                labels: labels.sort(),
+                datasets: [{
+                    label: price_label,
+                    data: volume_data,
+                    borderColor: "#3e95cd",
+                    yAxisID: 'metrics_value',
+                    type: 'line'
+                }]
+            }
+
+        return metricsData;
+    }
+
+    function getPtbRatioChartData(period) {
+        let labels = []
+        let volume_data = []
+        if (period == 'one_month') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > one_month %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.ptb_ratio }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '1 месяц'
+        } else if (period == 'six_months') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > six_months %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.ptb_ratio }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '6 месяцев'
+        } else if (period == 'one_year') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > one_year %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.ptb_ratio }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '1 год'
+        } else if (period == 'five_years') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > five_years %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.ptb_ratio }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '5 лет'
+        } else if (period == 'ten_years') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > ten_years %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.ptb_ratio }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '10 лет'
+        } else if (period == 'all_time') {
+            {% for metrics in keyMetrics %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.ptb_ratio }}')
+            {% endfor %}
+            var price_label = 'за все время'
+        } else {
+            alert('error')
+        }
+        const metricsData = {
+                labels: labels.sort(),
+                datasets: [{
+                    label: price_label,
+                    data: volume_data,
+                    borderColor: "#3e95cd",
+                    yAxisID: 'metrics_value',
+                    type: 'line'
+                }]
+            }
+
+        return metricsData;
+    }
+
+    function getEnterpriseVOEChartData(period) {
+        let labels = []
+        let volume_data = []
+        if (period == 'one_month') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > one_month %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.enterprise_value_over_ebitda }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '1 месяц'
+        } else if (period == 'six_months') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > six_months %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.enterprise_value_over_ebitda }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '6 месяцев'
+        } else if (period == 'one_year') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > one_year %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.enterprise_value_over_ebitda }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '1 год'
+        } else if (period == 'five_years') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > five_years %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.enterprise_value_over_ebitda }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '5 лет'
+        } else if (period == 'ten_years') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > ten_years %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.enterprise_value_over_ebitda }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '10 лет'
+        } else if (period == 'all_time') {
+            {% for metrics in keyMetrics %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.enterprise_value_over_ebitda }}')
+            {% endfor %}
+            var price_label = 'за все время'
+        } else {
+            alert('error')
+        }
+        const metricsData = {
+                labels: labels.sort(),
+                datasets: [{
+                    label: price_label,
+                    data: volume_data,
+                    borderColor: "#3e95cd",
+                    yAxisID: 'metrics_value',
+                    type: 'line'
+                }]
+            }
+
+        return metricsData;
+    }
+
+    function getEvToOpCashFlowChartData(period) {
+        let labels = []
+        let volume_data = []
+        if (period == 'one_month') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > one_month %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.ev_to_operating_cash_flow }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '1 месяц'
+        } else if (period == 'six_months') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > six_months %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.ev_to_operating_cash_flow }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '6 месяцев'
+        } else if (period == 'one_year') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > one_year %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.ev_to_operating_cash_flow }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '1 год'
+        } else if (period == 'five_years') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > five_years %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.ev_to_operating_cash_flow }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '5 лет'
+        } else if (period == 'ten_years') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > ten_years %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.ev_to_operating_cash_flow }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '10 лет'
+        } else if (period == 'all_time') {
+            {% for metrics in keyMetrics %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.ev_to_operating_cash_flow }}')
+            {% endfor %}
+            var price_label = 'за все время'
+        } else {
+            alert('error')
+        }
+        const metricsData = {
+                labels: labels.sort(),
+                datasets: [{
+                    label: price_label,
+                    data: volume_data,
+                    borderColor: "#3e95cd",
+                    yAxisID: 'metrics_value',
+                    type: 'line'
+                }]
+            }
+
+        return metricsData;
+    }
+
+    function getNetDebtToEbitdaChartData(period) {
+        let labels = []
+        let volume_data = []
+        if (period == 'one_month') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > one_month %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.net_debt_to_ebitda }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '1 месяц'
+        } else if (period == 'six_months') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > six_months %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.net_debt_to_ebitda }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '6 месяцев'
+        } else if (period == 'one_year') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > one_year %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.net_debt_to_ebitda }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '1 год'
+        } else if (period == 'five_years') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > five_years %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.net_debt_to_ebitda }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '5 лет'
+        } else if (period == 'ten_years') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > ten_years %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.net_debt_to_ebitda }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '10 лет'
+        } else if (period == 'all_time') {
+            {% for metrics in keyMetrics %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.net_debt_to_ebitda }}')
+            {% endfor %}
+            var price_label = 'за все время'
+        } else {
+            alert('error')
+        }
+        const metricsData = {
+                labels: labels.sort(),
+                datasets: [{
+                    label: price_label,
+                    data: volume_data,
+                    borderColor: "#3e95cd",
+                    yAxisID: 'metrics_value',
+                    type: 'line'
+                }]
+            }
+
+        return metricsData;
+    }
+
+    function getRoeChartData(period) {
+        let labels = []
+        let volume_data = []
+        if (period == 'one_month') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > one_month %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.roe }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '1 месяц'
+        } else if (period == 'six_months') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > six_months %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.roe }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '6 месяцев'
+        } else if (period == 'one_year') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > one_year %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.roe }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '1 год'
+        } else if (period == 'five_years') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > five_years %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.roe }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '5 лет'
+        } else if (period == 'ten_years') {
+            {% for metrics in keyMetrics %}
+                {% if metrics.date > ten_years %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.roe }}')
+                {% endif %}
+            {% endfor %}
+            var price_label = '10 лет'
+        } else if (period == 'all_time') {
+            {% for metrics in keyMetrics %}
+                    labels.push('{{ metrics.date }}')
+                    volume_data.push('{{ metrics.roe }}')
+            {% endfor %}
+            var price_label = 'за все время'
+        } else {
+            alert('error')
+        }
+        const metricsData = {
+                labels: labels.sort(),
+                datasets: [{
+                    label: price_label,
+                    data: volume_data,
+                    borderColor: "#3e95cd",
+                    yAxisID: 'metrics_value',
+                    type: 'line'
+                }]
+            }
+
+        return metricsData;
+    }
+
+    const metricsOptions = {
+        scales:{
+            yAxes:[{
+                ticks:{
+                    beginAtZero: true
+                },
+                position: 'left',
+                display: true,
+                id: 'metrics_value'
+            }],
+        },
+    }
+
+
+    var share_ctx = document.getElementById('share_chart').getContext('2d');
+    var share_chart = new Chart(share_ctx, {type: 'bar', data: getShareChartData('five_years'), options: shareOptions});
+
+    var market_cap_ctx = document.getElementById('market_cap_chart').getContext('2d');
+    var market_cap_chart = new Chart(market_cap_ctx, {type: 'bar', data: getMarketCapChartData('five_years'), options: metricsOptions});
+
+    var pe_ratio_ctx = document.getElementById('pe_ratio_chart').getContext('2d');
+    var pe_ratio_chart = new Chart(pe_ratio_ctx, {type: 'bar', data: getPeRatioChartData('five_years'), options: metricsOptions});
+
+    var price_to_sales_ratio_ctx = document.getElementById('price_to_sales_ratio_chart').getContext('2d');
+    var price_to_sales_ratio_chart = new Chart(price_to_sales_ratio_ctx, {type: 'bar', data: getPriceToSalesChartData('five_years'), options: metricsOptions});
+
+    var ptb_ratio_ctx = document.getElementById('ptb_ratio_chart').getContext('2d');
+    var ptb_ratio_chart = new Chart(ptb_ratio_ctx, {type: 'bar', data: getPtbRatioChartData('five_years'), options: metricsOptions});
+
+    var enterprise_value_over_ebitda_ctx = document.getElementById('enterprise_value_over_ebitda_chart').getContext('2d');
+    var enterprise_value_over_ebitda_chart = new Chart(enterprise_value_over_ebitda_ctx, {type: 'bar', data: getEnterpriseVOEChartData('five_years'), options: metricsOptions});
+
+    var ev_to_operating_cash_flow_ctx = document.getElementById('ev_to_operating_cash_flow_chart').getContext('2d');
+    var ev_to_operating_cash_flow_chart = new Chart(ev_to_operating_cash_flow_ctx, {type: 'bar', data: getEvToOpCashFlowChartData('five_years'), options: metricsOptions});
+
+    var net_debt_to_ebitda_ctx = document.getElementById('net_debt_to_ebitda_chart').getContext('2d');
+    var net_debt_to_ebitda_chart = new Chart(net_debt_to_ebitda_ctx, {type: 'bar', data: getNetDebtToEbitdaChartData('five_years'), options: metricsOptions});
+
+    var roe_ctx = document.getElementById('roe_chart').getContext('2d');
+    var roe_chart = new Chart(roe_ctx, {type: 'bar', data: getRoeChartData('five_years'), options: metricsOptions});
+
+
+
+    document.getElementById("tab2-period-button").addEventListener('click', () => {
+        var period = document.getElementById("tab2-period").value;
+        if (period == 0) {
+            share_chart.config.data = getShareChartData('one_month')
+            market_cap_chart.config.data = getMarketCapChartData('one_month')
+            pe_ratio_chart.config.data = getPeRatioChartData('one_month')
+            price_to_sales_ratio_chart.config.data = getPriceToSalesChartData('one_month')
+            ptb_ratio_chart.config.data = getPtbRatioChartData('one_month')
+            enterprise_value_over_ebitda_chart.config.data = getEnterpriseVOEChartData('one_month')
+            ev_to_operating_cash_flow_chart.config.data = getEvToOpCashFlowChartData('one_month')
+            net_debt_to_ebitda_chart.config.data = getNetDebtToEbitdaChartData('one_month')
+            roe_chart.config.data = getRoeChartData('one_month')
+            share_chart.update();
+            market_cap_chart.update();
+            pe_ratio_chart.update();
+            price_to_sales_ratio_chart.update();
+            ptb_ratio_chart.update();
+            enterprise_value_over_ebitda_chart.update();
+            ev_to_operating_cash_flow_chart.update();
+            net_debt_to_ebitda_chart.update();
+            roe_chart.update();
+        } else if (period == 1) {
+            share_chart.config.data = getShareChartData('six_months')
+            market_cap_chart.config.data = getMarketCapChartData('six_months')
+            pe_ratio_chart.config.data = getPeRatioChartData('six_months')
+            price_to_sales_ratio_chart.config.data = getPriceToSalesChartData('six_months')
+            ptb_ratio_chart.config.data = getPtbRatioChartData('six_months')
+            enterprise_value_over_ebitda_chart.config.data = getEnterpriseVOEChartData('six_months')
+            ev_to_operating_cash_flow_chart.config.data = getEvToOpCashFlowChartData('six_months')
+            net_debt_to_ebitda_chart.config.data = getNetDebtToEbitdaChartData('six_months')
+            roe_chart.config.data = getRoeChartData('six_months')
+            share_chart.update();
+            market_cap_chart.update();
+            pe_ratio_chart.update();
+            price_to_sales_ratio_chart.update();
+            ptb_ratio_chart.update();
+            enterprise_value_over_ebitda_chart.update();
+            ev_to_operating_cash_flow_chart.update();
+            net_debt_to_ebitda_chart.update();
+            roe_chart.update();
+        } else if (period == 2) {
+            share_chart.config.data = getShareChartData('one_year')
+            market_cap_chart.config.data = getMarketCapChartData('one_year')
+            pe_ratio_chart.config.data = getPeRatioChartData('one_year')
+            price_to_sales_ratio_chart.config.data = getPriceToSalesChartData('one_year')
+            ptb_ratio_chart.config.data = getPtbRatioChartData('one_year')
+            enterprise_value_over_ebitda_chart.config.data = getEnterpriseVOEChartData('one_year')
+            ev_to_operating_cash_flow_chart.config.data = getEvToOpCashFlowChartData('one_year')
+            net_debt_to_ebitda_chart.config.data = getNetDebtToEbitdaChartData('one_year')
+            roe_chart.config.data = getRoeChartData('one_year')
+            share_chart.update();
+            market_cap_chart.update();
+            pe_ratio_chart.update();
+            price_to_sales_ratio_chart.update();
+            ptb_ratio_chart.update();
+            enterprise_value_over_ebitda_chart.update();
+            ev_to_operating_cash_flow_chart.update();
+            net_debt_to_ebitda_chart.update();
+            roe_chart.update();
+        } else if (period == 3) {
+            share_chart.config.data = getShareChartData('five_years')
+            market_cap_chart.config.data = getMarketCapChartData('five_years')
+            pe_ratio_chart.config.data = getPeRatioChartData('five_years')
+            price_to_sales_ratio_chart.config.data = getPriceToSalesChartData('five_years')
+            ptb_ratio_chart.config.data = getPtbRatioChartData('five_years')
+            enterprise_value_over_ebitda_chart.config.data = getEnterpriseVOEChartData('five_years')
+            ev_to_operating_cash_flow_chart.config.data = getEvToOpCashFlowChartData('five_years')
+            net_debt_to_ebitda_chart.config.data = getNetDebtToEbitdaChartData('five_years')
+            roe_chart.config.data = getRoeChartData('five_years')
+            share_chart.update();
+            market_cap_chart.update();
+            pe_ratio_chart.update();
+            price_to_sales_ratio_chart.update();
+            ptb_ratio_chart.update();
+            enterprise_value_over_ebitda_chart.update();
+            ev_to_operating_cash_flow_chart.update();
+            net_debt_to_ebitda_chart.update();
+            roe_chart.update();
+        } else if (period == 4) {
+            share_chart.config.data = getShareChartData('ten_years')
+            market_cap_chart.config.data = getMarketCapChartData('ten_years')
+            pe_ratio_chart.config.data = getPeRatioChartData('ten_years')
+            price_to_sales_ratio_chart.config.data = getPriceToSalesChartData('ten_years')
+            ptb_ratio_chart.config.data = getPtbRatioChartData('ten_years')
+            enterprise_value_over_ebitda_chart.config.data = getEnterpriseVOEChartData('ten_years')
+            ev_to_operating_cash_flow_chart.config.data = getEvToOpCashFlowChartData('ten_years')
+            net_debt_to_ebitda_chart.config.data = getNetDebtToEbitdaChartData('ten_years')
+            roe_chart.config.data = getRoeChartData('ten_years')
+            share_chart.update();
+            market_cap_chart.update();
+            pe_ratio_chart.update();
+            price_to_sales_ratio_chart.update();
+            ptb_ratio_chart.update();
+            enterprise_value_over_ebitda_chart.update();
+            ev_to_operating_cash_flow_chart.update();
+            net_debt_to_ebitda_chart.update();
+            roe_chart.update();
+        } else if (period == 5) {
+            share_chart.config.data = getShareChartData('all_time')
+            market_cap_chart.config.data = getMarketCapChartData('all_time')
+            pe_ratio_chart.config.data = getPeRatioChartData('all_time')
+            price_to_sales_ratio_chart.config.data = getPriceToSalesChartData('all_time')
+            ptb_ratio_chart.config.data = getPtbRatioChartData('all_time')
+            enterprise_value_over_ebitda_chart.config.data = getEnterpriseVOEChartData('all_time')
+            ev_to_operating_cash_flow_chart.config.data = getEvToOpCashFlowChartData('all_time')
+            net_debt_to_ebitda_chart.config.data = getNetDebtToEbitdaChartData('all_time')
+            roe_chart.config.data = getRoeChartData('all_time')
+            share_chart.update();
+            market_cap_chart.update();
+            pe_ratio_chart.update();
+            price_to_sales_ratio_chart.update();
+            ptb_ratio_chart.update();
+            enterprise_value_over_ebitda_chart.update();
+            ev_to_operating_cash_flow_chart.update();
+            net_debt_to_ebitda_chart.update();
+            roe_chart.update();
+        };
     });
 
 </script>

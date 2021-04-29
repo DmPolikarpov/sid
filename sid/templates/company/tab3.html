@@ -1,29 +1,194 @@
 <h1>Балансовая ведомость</h1>
+<div class="tab3-balanceSheet-options">
+    <select id="tab3-balanceSheet">
+        <option value="cash_and_cash_equivalents">денежные средства и денежные эквиваленты</option>
+        <option value="net_receivables">чистая дебиторская задолженность</option>
+        <option value="inventory">запасы</option>
+        <option value="total_current_assets">итого (оборотных активов)</option>
+        <option value="property_plant_equipment_net">основные средства</option>
+        <option value="intangible_assets">нематериальные активы</option>
+        <option value="total_non_current_assets">итого (внеоборотных активов)</option>
+        <option value="total_assets">баланс (активы)</option>
+        <option value="account_payables">кредиторская задолженность</option>
+        <option value="total_current_liabilities">итого (краткосрочные обязательства)</option>
+        <option value="total_non_current_liabilities">итого (долгосрочные обязательства)</option>
+        <option value="long_term_debt">долгосрочная задолженность</option>
+        <option value="total_liabilities">баланс (пассивы)</option>
+        <option value="common_stock">обыкновенные акции</option>
+        <option value="retained_earnings">нераспределенная прибыль</option>
+        <option value="total_stockholders_equity">общий акционерный капитал</option>
+        <option value="total_liabilities_and_stockholders_equity">общие обязательства и акционерный капитал</option>
+        <option value="total_investments">всего вложений</option>
+        <option value="total_debt">общая задолженность</option>
+        <option value="net_debt">чистый долг</option>
+    </select>
+    <button id="tab3-balanceSheet-button">Показать</button>
+</div>
+<div class="tab2_charts">
+    <canvas id="balanceChart"></canvas>
+</div>
 
-<select>
-    <option value="cash_and_cash_equivalents">денежные средства и денежные эквиваленты</option>
-    <option value="net_receivables">чистая дебиторская задолженность</option>
-    <option value="inventory">запасы</option>
-    <option value="total_current_assets">итого (оборотных активов)</option>
-    <option value="property_plant_equipment_net">основные средства</option>
-    <option value="intangible_assets">нематериальные активы</option>
-    <option value="total_non_current_assets">итого (внеоборотных активов)</option>
-    <option value="total_assets">баланс (активы)</option>
-    <option value="account_payables">кредиторская задолженность</option>
-    <option value="total_current_liabilities">итого (краткосрочные обязательства)</option>
-    <option value="total_non_current_liabilities">итого (долгосрочные обязательства)</option>
-    <option value="long_term_debt">долгосрочная задолженность</option>
-    <option value="total_liabilities">баланс (пассивы)</option>
-    <option value="common_stock">обыкновенные акции</option>
-    <option value="retained_earnings">нераспределенная прибыль</option>
-    <option value="total_stockholders_equity">общий акционерный капитал</option>
-    <option value="total_liabilities_and_stockholders_equity">общие обязательства и акционерный капитал</option>
-    <option value="total_investments">всего вложений</option>
-    <option value="total_debt">общая задолженность</option>
-    <option value="net_debt">чистый долг</option>
-</select>
-<select>
-    <option value="twoYears">2 года</option>
-    <option value="fiveYears">5 лет</option>
-    <option value="tenYears">10 лет</option>
-</select>
+<script>
+    function getBalanceChartData(param) {
+        let labels = []
+        let chart_data = []
+
+        {% for balanceSheetItem in balanceSheet %}
+            {% if balanceSheetItem.date > five_years %}
+                labels.push('{{ balanceSheetItem.date }}')
+                switch(param) {
+                    case "cash_and_cash_equivalents":
+                        chart_data.push('{{ balanceSheetItem.cash_and_cash_equivalents }}')
+                        break;
+                    case "net_receivables":
+                        chart_data.push('{{ balanceSheetItem.net_receivables }}')
+                        break;
+                    case "inventory":
+                        chart_data.push('{{ balanceSheetItem.inventory }}')
+                        break;
+                    case "total_current_assets":
+                        chart_data.push('{{ balanceSheetItem.total_current_assets }}')
+                        break;
+                    case 'property_plant_equipment_net':
+                        chart_data.push('{{ balanceSheetItem.property_plant_equipment_net }}')
+                        break;
+                    case 'intangible_assets':
+                        chart_data.push('{{ balanceSheetItem.intangible_assets }}')
+                        break;
+                    case 'total_non_current_assets':
+                        chart_data.push('{{ balanceSheetItem.total_non_current_assets }}')
+                        break;
+                    case 'total_assets':
+                        chart_data.push('{{ balanceSheetItem.total_assets }}')
+                        break;
+                    case 'account_payables':
+                        chart_data.push('{{ balanceSheetItem.account_payables }}')
+                        break;
+                    case 'total_non_current_liabilities':
+                        chart_data.push('{{ balanceSheetItem.total_non_current_liabilities }}')
+                        break;
+                    case 'long_term_debt':
+                        chart_data.push('{{ balanceSheetItem.long_term_debt }}')
+                        break;
+                    case 'total_liabilities':
+                        chart_data.push('{{ balanceSheetItem.total_liabilities }}')
+                        break;
+                    case 'common_stock':
+                        chart_data.push('{{ balanceSheetItem.common_stock }}')
+                        break;
+                    case 'retained_earnings':
+                        chart_data.push('{{ balanceSheetItem.retained_earnings }}')
+                        break;
+                    case 'total_stockholders_equity':
+                        chart_data.push('{{ balanceSheetItem.total_stockholders_equity }}')
+                        break;
+                    case 'total_liabilities_and_stockholders_equity':
+                        chart_data.push('{{ balanceSheetItem.total_liabilities_and_stockholders_equity }}')
+                        break;
+                    case 'total_investments':
+                        chart_data.push('{{ balanceSheetItem.total_investments }}')
+                        break;
+                    case 'total_debt':
+                        chart_data.push('{{ balanceSheetItem.total_debt }}')
+                        break;
+                    case 'net_debt':
+                        chart_data.push('{{ balanceSheetItem.net_debt }}')
+                        break;
+                }    
+            {% endif %}
+        {% endfor %}
+
+        const balanceSheetData = {
+                labels: labels.sort(),
+                datasets: [{
+                    label: param,
+                    data: chart_data,
+                    borderColor: "#3e95cd",
+                    yAxisID: 'metrics_value',
+                    type: 'line'
+                }]
+            }
+
+        return balanceSheetData;
+    }
+
+    const balanceSheetOptions = {
+        scales:{
+            yAxes:[{
+                ticks:{
+                    beginAtZero: true
+                },
+                position: 'left',
+                display: true,
+                id: 'metrics_value'
+            }],
+        },
+    }
+
+    var ctx = document.getElementById('balanceChart').getContext('2d');
+    var balance_chart = new Chart(ctx, {type: 'bar', data: getBalanceChartData('cash_and_cash_equivalents'), options: balanceSheetOptions});
+
+    document.getElementById("tab3-balanceSheet-button").addEventListener('click', () => {
+        let option = document.getElementById("tab3-balanceSheet").value;
+        if (option == 'cash_and_cash_equivalents') {
+            balance_chart.config.data = getBalanceChartData('cash_and_cash_equivalents');
+            balance_chart.update();
+        } else if (option == 'net_receivables') {
+            balance_chart.config.data = getBalanceChartData('net_receivables');
+            balance_chart.update();
+        } else if (option == 'inventory') {
+            balance_chart.config.data = getBalanceChartData('inventory');
+            balance_chart.update();
+        } else if (option == 'total_current_assets') {
+            balance_chart.config.data = getBalanceChartData('total_current_assets');
+            balance_chart.update();
+        } else if (option == 'property_plant_equipment_net') {
+            balance_chart.config.data = getBalanceChartData('property_plant_equipment_net');
+            balance_chart.update();
+        } else if (option == 'intangible_assets') {
+            balance_chart.config.data = getBalanceChartData('intangible_assets');
+            balance_chart.update();
+        } else if (option == 'total_non_current_assets') {
+            balance_chart.config.data = getBalanceChartData('total_non_current_assets');
+            balance_chart.update();
+        } else if (option == 'total_assets') {
+            balance_chart.config.data = getBalanceChartData('total_assets');
+            balance_chart.update();
+        } else if (option == 'account_payables') {
+            balance_chart.config.data = getBalanceChartData('account_payables');
+            balance_chart.update();
+        } else if (option == 'total_non_current_liabilities') {
+            balance_chart.config.data = getBalanceChartData('total_non_current_liabilities');
+            balance_chart.update();
+        } else if (option == 'long_term_debt') {
+            balance_chart.config.data = getBalanceChartData('long_term_debt');
+            balance_chart.update();
+        } else if (option == 'total_liabilities') {
+            balance_chart.config.data = getBalanceChartData('total_liabilities');
+            balance_chart.update();
+        } else if (option == 'common_stock') {
+            balance_chart.config.data = getBalanceChartData('common_stock');
+            balance_chart.update();
+        } else if (option == 'retained_earnings') {
+            balance_chart.config.data = getBalanceChartData('retained_earnings');
+            balance_chart.update();
+        } else if (option == 'total_stockholders_equity') {
+            balance_chart.config.data = getBalanceChartData('total_stockholders_equity');
+            balance_chart.update();
+        } else if (option == 'total_liabilities_and_stockholders_equity') {
+            balance_chart.config.data = getBalanceChartData('total_liabilities_and_stockholders_equity');
+            balance_chart.update();
+        } else if (option == 'total_investments') {
+            balance_chart.config.data = getBalanceChartData('total_investments');
+            balance_chart.update();
+        } else if (option == 'total_debt') {
+            balance_chart.config.data = getBalanceChartData('total_debt');
+            balance_chart.update();
+        } else if (option == 'net_debt') {
+            balance_chart.config.data = getBalanceChartData('net_debt');
+            balance_chart.update();
+        };
+    })
+
+
+</script>

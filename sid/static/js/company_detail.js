@@ -17,6 +17,7 @@ $(document).ready(function() {
         $(".canvas").fadeIn();
         $(".script").fadeIn();
         $("#tab2 div").fadeIn();
+        $("#tab3 div").fadeIn();
     });
 });
 

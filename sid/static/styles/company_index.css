@@ -1,7 +1,18 @@
-/*company index*/
+/*header of the section*/
+.caption {
+    position: relative;
+    width: 100%;
+    border-top: 2px solid #ccc;
+}
 
-
-
+.caption h1 {
+    text-align: center;
+    font-family: 'Century', Times, serif;
+    font-style: oblique;
+    font-size: 400%;
+    padding: 10vh;
+}
+/*company list*/
 .company_list {
     position: relative;
     width: 100%;
@@ -43,6 +54,10 @@
     position: relative;
     text-align: center;
     padding: 10%;
+}
+
+.list-item ul li a {
+    text-decoration: none;
 }
 
 .company_logo img { 
@@ -101,7 +116,7 @@ p.content.visible {
 
 .paginator ul li {
     float: left;
-    padding:50px 40px 0 40px;
+    padding:50px 40px 40px 40px;
     font-family: 'Century', Times, serif;
     font-size: 150%;
 }

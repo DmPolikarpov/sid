@@ -1,8 +1,9 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, abort
 from datetime import datetime, timedelta
 from sid.company.models import Company
 from sid.share.models import Share
 from sid.CompanyKeyMetrics.models import Company_key_metrics
+from sid.balanceSheet.models import Balance_sheet
 
 
 blueprint = Blueprint('company', __name__, url_prefix='/company')
@@ -28,7 +29,10 @@ def company_detail(company_id):
     shares = Share.query.filter_by(company_id=company_id).all()
     if not shares:
         abort(404)
-    keyMetrics = Company_key_metrics.query.filter_by(company_id=company_id).filter_by(date=last_year).all()
+    keyMetrics = Company_key_metrics.query.filter_by(company_id=company_id).all()
+    if not keyMetrics:
+        abort(404)
+    balanceSheet = Balance_sheet.query.filter_by(company_id=company_id).all()
     if not keyMetrics:
         abort(404)
     return render_template('company/detail.html',
@@ -39,5 +43,6 @@ def company_detail(company_id):
                             five_years = five_years,
                             ten_years = ten_years,
                             shares = shares,
-                            keyMetrics = keyMetrics
+                            keyMetrics = keyMetrics,
+                            balanceSheet = balanceSheet
                             )
