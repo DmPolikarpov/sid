@@ -1,24 +1,26 @@
-
 .slogan {
     position: relative;
     width: 100%;
-    height: 40vh;
+    height: 45vh;
 }
 
 .slogan h1 {
     text-align: center;
     font-family: 'Century', Times, serif;
     font-style: oblique;
-    font-size: 60px;
-    margin-top: 60px;
+    font-size: 5vw;
+    max-width: 100%;
+    padding-top: 10vh;
+    padding-bottom: 5vh;
+
 }
 
 .slogan h2 {
     text-align: center;
-    margin-top: 40px;
+    padding-top: 3vh;
     font-family: 'Century', Times, serif;
     font-style: oblique;
-    font-size: 50px;
+    font-size: 3vw;
 }
 
 /*main content*/
@@ -34,7 +36,7 @@
     margin-left: 20%;
     font-family: 'Century', Times, serif;
     font-style: oblique;
-    font-size: 400%;
+    font-size: 5vw;
 }
 
 .issuer img {
@@ -49,7 +51,7 @@
     margin-top: 3%;
     font-family: 'Century', Times, serif;
     font-style: oblique;
-    text-indent: 30px;
+    font-size: 2vw;
 }
 
 .portfolio {
@@ -64,7 +66,7 @@
     margin-left: 55%;
     font-family: 'Century', Times, serif;
     font-style: oblique;
-    font-size: 400%;
+    font-size: 5vw;
 }
 
 .portfolio img {
@@ -79,7 +81,7 @@
     margin-top: 3%;
     font-family: 'Century', Times, serif;
     font-style: oblique;
-    text-indent: 30px;
+    font-size: 2vw;
 }
 
 .about {
@@ -94,7 +96,7 @@
     margin-left: 10%;
     font-family: 'Century', Times, serif;
     font-style: oblique;
-    font-size: 400%;
+    font-size: 5vw;
 }
 
 .about img {
@@ -109,76 +111,146 @@
     margin-top: 3%;
     font-family: 'Century', Times, serif;
     font-style: oblique;
-    text-indent: 30px;
+    font-size: 2vw;
 }
 
 .issuer h3,
 .portfolio h3,
 .about h3 {
     position: relative;
-    margin-top: 5%;
+    margin-top: 3%;
     margin-left: 20%;
     font-family: 'Century', Times, serif;
     font-style: oblique;
-    font-size: 30px;
+    font-size: 3vw;
 }
 
+@media (max-width: 1024px) {
+    .slogan {
+        position: relative;
+        width: 100%;
+        height: 45vh;
+    }
 
+    .slogan h1 {
+        text-align: center;
+        font-family: 'Century', Times, serif;
+        font-style: oblique;
+        font-size: 6vw;
+        max-width: 100%;
+        padding-top: 10vh;
+        padding-bottom: 5vh;
 
+    }
 
+    .slogan h2 {
+        text-align: center;
+        padding-top: 5vh;
+        font-family: 'Century', Times, serif;
+        font-style: oblique;
+        font-size: 4vw;
+    }
 
-/*
-#main-content {
-    position: absolute;
-    width: 100%;
-    min-height: 100%;
-    flex: 1 0 auto;
-    left:0;
-    top: 120vh;
+    /*main content*/
+    .issuer {
+        position: relative;
+        width: 100%;
+        height: 60vh;
+        border-top: 2px solid #ccc;
+    }
+
+    .issuer h1 {
+        margin-top: 7%;
+        margin-left: 20%;
+        font-family: 'Century', Times, serif;
+        font-style: oblique;
+        font-size: 6vw;
+    }
+
+    .issuer img {
+        position: relative;
+        width: 55%;
+        margin-top: 7%;
+        margin-left: 30%;
+    }
+
+    .issuer h2 {
+        position: relative;
+        margin-top: 7%;
+        font-family: 'Century', Times, serif;
+        font-style: oblique;
+        font-size: 3vw;
+    }
+
+    .portfolio {
+        position: relative;
+        width: 100%;
+        height: 65vh;
+        border-top: 2px solid #ccc;
+    }
+
+    .portfolio h1 {
+        margin-top: 7%;
+        margin-left: 55%;
+        font-family: 'Century', Times, serif;
+        font-style: oblique;
+        font-size: 6vw;
+    }
+
+    .portfolio img {
+        position: relative;
+        width: 55%;
+        margin-top: 7%;
+        margin-left: 10%;
+    }
+
+    .portfolio h2 {
+        position: relative;
+        margin-top: 7%;
+        font-family: 'Century', Times, serif;
+        font-style: oblique;
+        font-size: 3vw;
+    }
+
+    .about {
+        position: relative;
+        width: 100%;
+        height: 65vh;
+        border-top: 2px solid #ccc;
+    }
+
+    .about h1 {
+        margin-top: 7%;
+        margin-left: 10%;
+        font-family: 'Century', Times, serif;
+        font-style: oblique;
+        font-size: 6vw;
+    }
+
+    .about img {
+        position: relative;
+        width: 55%;
+        margin-top: 7%;
+        margin-left: 40%;
+    }
+
+    .about h2 {
+        position: relative;
+        margin-top: 7%;
+        font-family: 'Century', Times, serif;
+        font-style: oblique;
+        font-size: 3vw;
+    }
+
+    .issuer h3,
+    .portfolio h3,
+    .about h3 {
+        position: relative;
+        margin-top: 5%;
+        margin-left: 20%;
+        font-family: 'Century', Times, serif;
+        font-style: oblique;
+        font-size: 4vw;
+    }
+
 }
-
-
-.index {
-
-}
-
-.index h1 {
-    text-align: center;
-    font-family: 'Century', Times, serif;
-    font-style: oblique;
-    font-size: 300%;
-}
-
-.index h2 {
-    text-align: center;
-    font-family: 'Century', Times, serif;
-    font-style: oblique;
-    font-size: 200%;    
-}
-
-.index a {
-    font-family: 'Century', Times, serif;
-    font-size: 200%;
-}
-
-.index table {
-    width: 100%;
-    height: 700px;
-}
-
-.index tr {
-    border: 1px solid grey;
-}
-
-.index img { 
-    height:100px;
-    background:rgb(255, 248, 220);
-}
-
-.description {
-    width: 50%;
-    font-family: 'Century', Times, serif;
-    font-style: oblique;
-    font-size: 150%;
-}
-*/

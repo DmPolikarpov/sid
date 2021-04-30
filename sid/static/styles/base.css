@@ -16,9 +16,11 @@ html, body {
 }
 
 .container {
-    max-width: 1180px;
+    position: relative;
+    float: center;
+    max-width: 90%;
     margin: 0 auto;
-    padding: 0px 10px;
+    padding: 5%;
     height: 100%;
 }
 
@@ -26,7 +28,7 @@ html, body {
 header {
     position: absolute;
     width: 100%;
-    height: 60vh;
+    height: 55vh;
     top: 0;
     left: 0;
 
@@ -42,7 +44,7 @@ header:after, .container:after {
     position: absolute;
     width: 100%;
     left: 0;
-    top: 60vh;
+    top: 55vh;
 }
 
 /*the link for the profile*/
@@ -118,7 +120,7 @@ header:after, .container:after {
     cursor: pointer;
     font-family: 'Century', Times, serif;
     font-style: oblique;
-    font-size: 20px;
+    font-size: 2vw;
     color: #000;
 }
 
@@ -134,18 +136,18 @@ header:after, .container:after {
     cursor: pointer;
     font-family: 'Century', Times, serif;
     font-style: oblique;
-    font-size: 20px;
+    font-size: 2vw;
     color: #000;
 }
 
 /*the header logotype*/
 .logotype {
     position: relative;
-    top: 20vh;
+    top: 15vh;
 }
 
 .logotype img {
     display: block;
     margin: 0 auto;
-    width: 600px;
+    max-width: 80%;
 }
