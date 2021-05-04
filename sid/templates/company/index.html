@@ -44,40 +44,4 @@
             </ul>
         </div>
     </div>
-    <script>
-        window.addEventListener('scroll', scrollActivityFunction, false);
-
-        let descriptions = document.querySelectorAll(".company_description p")
-        let names = document.querySelectorAll(".company_name a")
-        let logos = document.querySelectorAll(".company_logo")
-
-        function scrollActivityFunction() {
-            for (let i = 0; i < descriptions.length; i++) {
-                let oneDescription = descriptions[i];
-                let oneName = names[i];
-                let oneLogo = logos[i];
-                if (isFullyVisible(oneDescription)) {
-                    oneDescription.classList.add("visible");
-                    oneName.classList.add("visible");
-                    oneLogo.classList.add("visible");
-                } else {
-                    oneDescription.classList.remove("visible");
-                    oneName.classList.remove("visible");
-                    oneLogo.classList.remove("visible");
-                };
-            };
-        };
-
-        function isFullyVisible(element) {
-            let elementBorders = element.getBoundingClientRect();
-
-            let top = elementBorders.top;
-            let bottom = elementBorders.bottom;
-
-            return ((top > 0) && (bottom < window.innerHeight));
-        };
-
-
-
-    </script>
 {% endblock %}

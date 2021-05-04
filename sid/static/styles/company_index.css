@@ -2,6 +2,7 @@
 .caption {
     position: relative;
     width: 100%;
+    height: 20vh;
     border-top: 2px solid #ccc;
 }
 
@@ -9,31 +10,31 @@
     text-align: center;
     font-family: 'Century', Times, serif;
     font-style: oblique;
-    font-size: 400%;
-    padding: 10vh;
+    font-size: 6vw;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+
 }
 /*company list*/
 .company_list {
     position: relative;
     width: 100%;
-    height: 100vh;
 }
 
 .all-list-items {
+    position: relative;
     width: 100%;
-    height: 700px;
-    display: block;
+    height: 80vh;
 }
 
 .list-item {
     position: relative;
     float:left;
     border: 2px solid #ccc;
-    border-radius: 10px;
-    width: 20vh;
-    height: 35vh;
-    padding: 20px 20px 20px 20px;
-    margin: 3vh;
+    border-radius: 2vh;
+    width: 20%;
+    height: 25vw;
+    margin: 5%;
     background-color: rgba(168,186,191,0.8);
 }
 
@@ -41,7 +42,7 @@
     text-align: center;
     font-family: 'Century', Times, serif;
     font-style: oblique;
-    font-size: 100%;
+    font-size: 1.5vw;
 }
 
 .list-item ul {
@@ -61,52 +62,14 @@
 }
 
 .company_logo img { 
-    max-height: 100px;
-    max-width: 200px;
+    position: relative;
+    width: 80%;
+    border-radius: 10%;
     background:rgb(255, 248, 220);
-}
-
-.company_logo {
-    transition: all .5s ease-in-out;
-    transform: scaleX(-1);
-    opacity: 0;
-}
-
-.company_logo.visible {
-    transform: scaleX(1);
-    opacity: 1;
 }
 
 .company_description {
     width: 50%;
-}
-
-a.content {
-    font-family: 'Century', Times, serif;
-    font-style: oblique;
-    font-size: 100%;
-    transition: all .2s ease-in-out;
-    transform: translateX(30px);
-    opacity: 0;
-}
-
-p.content {
-    font-family: 'Century', Times, serif;
-    font-style: oblique;
-    font-size: 200%;
-    transition: all .2s ease-in-out;
-    transform: translate3d(0px, 70px, 0);
-    opacity: 0;
-}
-
-a.content.visible {
-    transform: translateX(0);
-    opacity: 1;
-}
-
-p.content.visible {
-    transform: translate3d(0px, 0, 0);
-    opacity: 1;
 }
 
 .paginator ul {
@@ -116,7 +79,8 @@ p.content.visible {
 
 .paginator ul li {
     float: left;
-    padding:50px 40px 40px 40px;
+    padding-left: 3vh;
+    padding-top: 5vh;
     font-family: 'Century', Times, serif;
-    font-size: 150%;
+    font-size: 2.5vw;
 }
