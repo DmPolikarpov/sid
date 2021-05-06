@@ -1,10 +1,20 @@
 /*styles for the page*/
-.company-detail h1 {
+
+.detail-caption {
+    position: relative;
+    width: 100%;
+    height: 25vh;
+    border-top: 2px solid #ccc;
+}
+
+.detail-caption h1 {
     text-align: center;
     font-family: 'Century', Times, serif;
     font-style: oblique;
+    font-size: 4vw;
+    padding-top: 7vh;
+    padding-bottom: 5vh;
 }
-
 
 /*styles for tabs*/
 #tabs {
@@ -16,6 +26,7 @@
 }
  
 #tabs li {
+    position: relative;
     float: left;
     margin: 0 .5em 0 0;
 }
@@ -40,7 +51,7 @@
     -moz-box-shadow: 0 2px 2px rgb(0, 0, 0);
     -webkit-box-shadow: 0 2px 2px rgb(0, 0, 0);
     box-shadow: 0 2px 2px rgb(0, 0, 0);
-    font-size: 18px;
+    font-size: 2vw;
     font-weight: 700;
 }
  
@@ -91,6 +102,7 @@
 
 /*styles for content*/
 #content {
+    position: relative;
     background: rgb(255, 255, 255);
     padding: 2em;
     margin-bottom: 5vh;
@@ -104,15 +116,15 @@
     font-family: 'Century', Times, serif;
 }
 
-#content #tab1 {
+#tab1 {
     height: 100vh;
 }
 
-#content #tab2 {
-    height: 750vh;
+#tab2 {
+    height: 850vh;
 }
 
-#content #tab3 {
+#tab3 {
     height: 100vh;
 }
 
@@ -124,17 +136,21 @@
 }
 
 .profile h2 {
+    position: relative;
     padding: 2vh;
     font-family: 'Century', Times, serif;
+    font-size: 2vw;
 }
 
 .profile p {
+    position: relative;
     text-align: left;
     font-family: 'Century', Times, serif;
-    font-size: 120%;
+    font-size: 1.5vw;
 }
 
-.logo {
+.logo img {
+    position: relative;
     float: right;
     width: 15%;
 }
@@ -165,11 +181,14 @@
 .tab3-balanceSheet-options {
     float: left;
     font-family: 'Century', Times, serif;
+    font-size: 1.5vw;
+    margin: 4vh;
 }
 
 .tab2-metrics h2 {
     padding: 2vh;
     font-family: 'Century', Times, serif;
+    font-size: 2vw;
 }
 
 .tab2-metrics select,
@@ -178,7 +197,7 @@
     border: 2px solid #ccc;
     border-radius: 10px;
     font-family: 'Century', Times, serif;
-    font-size: 120%;
+    font-size: 1.5vw;
     margin-bottom: 3vh;
 }
 
@@ -188,7 +207,7 @@
     border: 2px solid #ccc;
     border-radius: 10px;
     font-family: 'Century', Times, serif;
-    font-size: 120%;
+    font-size: 1.5vw;
     margin-bottom: 3vh;
 }
 
@@ -198,8 +217,248 @@
     border: 2px solid #ccc;
     border-radius: 10px;
     font-family: 'Century', Times, serif;
-    font-size: 120%;
+    font-size: 1.5vw;
     margin-bottom: 3vh;
+}
+
+@media (max-width: 760px) {
+    .detail-caption {
+        position: relative;
+        width: 100%;
+        height: 15vh;
+        border-top: 2px solid #ccc;
+    }
+
+    .detail-caption h1 {
+        text-align: center;
+        font-family: 'Century', Times, serif;
+        font-style: oblique;
+        font-size: 4vw;
+        padding-top: 7vh;
+        padding-bottom: 5vh;
+    }
+
+    /*styles for tabs*/
+    #tabs {
+        overflow: hidden;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+     
+    #tabs li {
+        float: left;
+        margin: 0 .5em 0 0;
+    }
+     
+    #tabs a {
+        position: relative;
+        background: rgb(255, 248, 220);
+        background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 255, 255)), to(rgb(255, 248, 220)));
+        background-image: -webkit-linear-gradient(top, rgb(255, 255, 255), rgb(255, 248, 220));
+        background-image: -moz-linear-gradient(top, rgb(255, 255, 255), rgb(255, 248, 220));
+        background-image: -ms-linear-gradient(top, rgb(255, 255, 255), rgb(255, 248, 220));
+        background-image: -o-linear-gradient(top, rgb(255, 255, 255), rgb(255, 248, 220));
+        background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgb(255, 248, 220));
+        padding: .7em 1.5em;
+        float: left;
+        text-decoration: none;
+        color: rgb(0, 0, 0);
+        text-shadow: 0 1px 0 rgb(255, 255, 255);
+        -webkit-border-radius: 5px 0 0 0;
+        -moz-border-radius: 5px 0 0 0;
+        border-radius: 5px 0 0 0;
+        -moz-box-shadow: 0 2px 2px rgb(0, 0, 0);
+        -webkit-box-shadow: 0 2px 2px rgb(0, 0, 0);
+        box-shadow: 0 2px 2px rgb(0, 0, 0);
+        font-size: 3vw;
+        font-weight: 700;
+    }
+     
+    #tabs a:hover,
+    #tabs a:hover::after,
+    #tabs a:focus,
+    #tabs a:focus::after {
+        background: rgb(255, 255, 255);
+    }
+     
+    #tabs a:focus {
+        outline: 0;
+    }
+     
+    #tabs a::after {
+        content:'';
+        position:absolute;
+        z-index: 1;
+        top: 0;
+        right: -.5em;  
+        bottom: 0;
+        width: 1em;
+        background: rgb(255, 248, 220);
+        background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(255, 255, 255)), to(rgb(255, 248, 220)));
+        background-image: -webkit-linear-gradient(top, rgb(255, 255, 255), rgb(255, 248, 220));
+        background-image: -moz-linear-gradient(top, rgb(255, 255, 255), rgb(255, 248, 220));
+        background-image: -ms-linear-gradient(top, rgb(255, 255, 255), rgb(255, 248, 220));
+        background-image: -o-linear-gradient(top, rgb(255, 255, 255), rgb(255, 248, 220));
+        background-image: linear-gradient(to bottom, rgb(255, 255, 255), rgb(255, 248, 220));  
+        -moz-box-shadow: 2px 2px 2px rgb(0, 0, 0);
+        -webkit-box-shadow: 2px 2px 2px rgb(0, 0, 0);
+        box-shadow: 2px 2px 2px rgb(0, 0, 0);
+        -webkit-transform: skew(10deg);
+        -moz-transform: skew(10deg);
+        -ms-transform: skew(10deg);
+        -o-transform: skew(10deg);
+        transform: skew(10deg);
+        -webkit-border-radius: 0 5px 0 0;
+        -moz-border-radius: 0 5px 0 0;
+        border-radius: 0 5px 0 0;
+    }
+     
+    #tabs #current a,
+    #tabs #current a::after {
+        background: rgb(255, 255, 255);
+        z-index: 3;
+    }
+
+    /*styles for content*/
+    #content {
+        position: relative;
+        width: 100%;
+        background: rgb(255, 255, 255);
+        padding: 1vh;
+        margin-bottom: 5vh;
+        z-index: 2; 
+        -moz-border-radius: 0 5px 5px 5px;
+        -webkit-border-radius: 0 5px 5px 5px;
+        border-radius: 0 5px 5px 5px;
+        -moz-box-shadow: 0 -2px 3px -2px rgb(0, 0, 0);
+        -webkit-box-shadow: 0 -2px 3px -2px rgb(0, 0, 0);
+        box-shadow: 0 -2px 3px -2px rgb(0, 0, 0);
+        font-family: 'Century', Times, serif;
+    }
+
+    #tab1 {
+        height: 80vh;
+    }
+
+    #tab2 {
+        height: 300vh;
+    }
+
+    #tab3 {
+        height: 80vh;
+    }
+
+    .profile {
+        position: relative;
+        float: left;
+        width: 100%;
+        font-family: 'Century', Times, serif;
+    }
+
+    .profile h2 {
+        position: relative;
+        text-align: center;
+        padding: 2vh;
+        font-family: 'Century', Times, serif;
+        font-size: 3vw;
+    }
+
+    .profile p {
+        position: relative;
+        text-align: left;
+        font-family: 'Century', Times, serif;
+        font-size: 2vw;
+    }
+
+    .logo img {
+        position: relative;
+        float: right;
+        width: 15%;
+    }
+
+    .tab2_charts {
+        position: relative;
+        float: left;
+        margin-top: 5vh;
+        width: 100%;
+        height: 25vh;
+        font-family: 'Century', Times, serif;
+        font-size: 1vw;
+
+    }
+
+    .tab2_charts h2 {
+        position: relative;
+        text-align: center;
+        padding: 10px 10px 10px 10px;
+        font-family: 'Century', Times, serif;
+        font-size: 3vw;
+    }
+
+    .tab2_charts canvas {
+        position: relative;
+        width: 100%;
+        height: 20vh;
+        border: 1px solid #ccc;
+    }
+
+    .tab2-metrics,
+    .tab3-balanceSheet-options {
+        position: relative;
+        float: left;
+        width: 100%;
+        margin: 4vh;
+    }
+
+    .tab2-metrics h2 {
+        position: relative;
+        text-align: center;
+        padding: 2vh;
+        font-family: 'Century', Times, serif;
+        font-size: 3vw;
+    }
+
+    .tab2-metrics select,
+    .tab3-balanceSheet-options select {
+        position: relative;
+        width: 60%;
+        border: 2px solid #ccc;
+        border-radius: 10%;
+        font-family: 'Century', Times, serif;
+        font-size: 2vw;
+        margin-right: 2vh;
+        margin-bottom: 3vh;
+    }
+
+    #tab2-period-button,
+    #tab3-balanceSheet-button {
+        padding: 2vh;
+        border: 2px solid #ccc;
+        border-radius: 10%;
+        font-family: 'Century', Times, serif;
+        font-size: 2vw;
+        margin-bottom: 3vh;
+    }
+
+    #tab2-period-button:hover,
+    #tab3-balanceSheet-button:hover {
+        padding: 2vh;
+        border: 2px solid #ccc;
+        border-radius: 10%;
+        font-family: 'Century', Times, serif;
+        font-size: 2vw;
+        margin-bottom: 3vh;
+    }
+
+    #tab3 h1 {
+        position: relative;
+        text-align: center;
+        padding: 2vh;
+        font-family: 'Century', Times, serif;
+        font-size: 3vw;
+    }
 }
 
 
